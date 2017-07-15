@@ -24,6 +24,7 @@ public class Ignore : MonoBehaviour
             Physics2D.IgnoreCollision(frontWall.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
 
 
+
         }
 
 
