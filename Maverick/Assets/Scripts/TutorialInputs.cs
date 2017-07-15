@@ -16,12 +16,16 @@ public class TutorialInputs : MonoBehaviour
 
 	// Use this for initialization
 	void Start ()
-    { 
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    {
+        movementImage.CrossFadeAlpha(0, 0, true);
+        meleeImage.CrossFadeAlpha(0, 0, true);
+        shootImage.CrossFadeAlpha(0, 0, true);
+        movementImage.CrossFadeAlpha(1, 1, true);
+    }
+
+
+    // Update is called once per frame
+    void Update ()
     {
         if (wasdDone == false)
         {
@@ -29,7 +33,7 @@ public class TutorialInputs : MonoBehaviour
             if (wasdDone)
             {
                 FadeMovement();
-                System.Threading.Thread.Sleep(1000);
+                meleeImage.CrossFadeAlpha(1, 1, true);
             }
             return;
         }
@@ -39,23 +43,19 @@ public class TutorialInputs : MonoBehaviour
             if (meleeDone)
             {
                 FadeMelee();
-                System.Threading.Thread.Sleep(1000);
+                shootImage.CrossFadeAlpha(1, 1, true);
             }
             return;
         }
         else if (shootDone == false)
         {
-            //shootDone = CheckShoot();
-            //print(shootDone);
-            shootImage.CrossFadeAlpha(0, 1, true);
-            System.Threading.Thread.Sleep(1000);
+            //shootImage.CrossFadeAlpha(0, 1, true);
             shootDone = true;
             return;
         }
         else
         {
-            //System.Threading.Thread.Sleep(1000);
-            EndTutorial("HighwayLevel");
+            print("Tutorial should end now");
         }
 	}
 
@@ -87,14 +87,13 @@ public class TutorialInputs : MonoBehaviour
     void FadeMovement()
     {
         movementImage.CrossFadeAlpha(0, 1, true);
-        print(wasdDone);
-        System.Threading.Thread.Sleep(1000);
+        //print(wasdDone);
     }
 
     void FadeMelee()
     {
         meleeImage.CrossFadeAlpha(0, 1, true);
-        print(meleeDone);
+        //print(meleeDone);
     }
 
     public void EndTutorial(string highwayLevel)
