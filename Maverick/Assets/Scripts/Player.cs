@@ -7,10 +7,11 @@ public class Player : MonoBehaviour
     public float speed;
     public float x_mov;
     public float y_mov;
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
+
         x_mov = Input.GetAxis("Horizontal");
         y_mov = Input.GetAxis("Vertical");
 
