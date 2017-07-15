@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public void PlayBtn(string highwayLevel)
+    public void PlayBtn(string tutorialLevel)
     {
-        SceneManager.LoadScene(highwayLevel);
+        SceneManager.LoadScene(tutorialLevel);
     }
 
     public void QuitBtn()
