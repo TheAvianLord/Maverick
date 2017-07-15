@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Kent.unity
+    guid: a54afaaa7210a7f44962e7c586a26834
+  - enabled: 1
+    path: Assets/HighwayLevel.unity
+    guid: fcf5ba8ad0a62c145bfb21ae0e28fa60
