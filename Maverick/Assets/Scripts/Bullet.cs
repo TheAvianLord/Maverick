@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
 
         }
 
-        else if (other.tag == "Car" || other.tag == "Enemy")
+        else if (other.tag == "Car" || other.tag == "Enemy" || (other.tag == "Player" && tag == "EnemyBullet"))
         {
             Destroy(gameObject);
         }

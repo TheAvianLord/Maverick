@@ -90,6 +90,12 @@ public class Car : MonoBehaviour
             health -= 20;
             AudioSource.PlayClipAtPoint(gunHit, transform.position);
         }
+
+        else if (other.tag == "EnemyBullet")
+        {
+            health -= 20;
+            AudioSource.PlayClipAtPoint(gunHit, transform.position);
+        }
     }
 
     IEnumerator wait()

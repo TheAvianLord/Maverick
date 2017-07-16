@@ -13,7 +13,7 @@ public class Gun : MonoBehaviour
     public int bullets;
     public static int maxBullets = 50;
 
-    public static float fireRate = 0.5f;
+    public static float fireRate = 0.25f;
     public float nextFire = 0.0f;
 
     public AudioClip gunShot;

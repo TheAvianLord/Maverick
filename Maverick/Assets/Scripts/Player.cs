@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public static int maxHealth = 300;
     public int health;
     public GameObject shadow;
+    public Rigidbody2D rb;
 
     public int points;
     public static int levelPoints = 1;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         myAnimator = GetComponent<Animator>();
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
             health = maxHealth;
             shadow.GetComponent<Collider2D>().enabled = false;
             transform.position = new Vector3(0, transform.position.y + (float)0.02, 0);
+            rb.AddForce(new Vector2(0, speed*2));
 
             if (transform.position.y > 2.5)
             {
