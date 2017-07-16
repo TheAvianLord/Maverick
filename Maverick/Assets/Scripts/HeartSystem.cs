@@ -20,6 +20,7 @@ public class HeartSystem : MonoBehaviour
         curHealth = startHearts * healthPerHeart;
         maxHealth = maxHeartAmount * healthPerHeart;
         CheckHealthAmount();
+        AddHeartContainer();
     }
 
     void CheckHealthAmount()

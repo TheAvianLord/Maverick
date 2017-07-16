@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class TutorialInputs : MonoBehaviour
 {
+    public AudioClip clip;
+
     bool wasdDone = false;
     bool meleeDone = false;
     bool shootDone = false;
@@ -35,6 +38,7 @@ public class TutorialInputs : MonoBehaviour
             if (wasdDone)
             {
                 FadeMovement();
+                AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
                 meleeImage.CrossFadeAlpha(1, 1, true);
             }
             return;
@@ -45,6 +49,7 @@ public class TutorialInputs : MonoBehaviour
             if (meleeDone)
             {
                 FadeMelee();
+                AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
                 shootImage.CrossFadeAlpha(1, 1, true);
             }
             return;
@@ -55,6 +60,7 @@ public class TutorialInputs : MonoBehaviour
             if (shootDone)
             {
                 FadeShoot();
+                AudioSource.PlayClipAtPoint(clip, new Vector3(5, 1, 2));
             }
             return;
         }
