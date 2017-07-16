@@ -10,6 +10,8 @@ public class TutorialInputs : MonoBehaviour
     bool meleeDone = false;
     bool shootDone = false;
 
+    bool tutorialOver = false;
+
     public Image movementImage;
     public Image meleeImage;
     public Image shootImage;
@@ -49,13 +51,17 @@ public class TutorialInputs : MonoBehaviour
         }
         else if (shootDone == false)
         {
-            //shootImage.CrossFadeAlpha(0, 1, true);
-            shootDone = true;
+            shootDone = CheckShoot();
+            if (shootDone)
+            {
+                FadeShoot();
+            }
             return;
         }
         else
         {
-            print("Tutorial should end now");
+            tutorialOver = false;
+            //print("Tutorial should end now");
         }
 	}
 
@@ -76,12 +82,7 @@ public class TutorialInputs : MonoBehaviour
 
     bool CheckShoot()
     {
-        bool mouse2Down = Input.GetKey(KeyCode.Mouse2);
-        if (mouse2Down)
-        {
-
-        }
-        return false;
+        return Input.GetKey(KeyCode.Mouse1);
     }
 
     void FadeMovement()
@@ -96,8 +97,14 @@ public class TutorialInputs : MonoBehaviour
         //print(meleeDone);
     }
 
+    void FadeShoot()
+    {
+        shootImage.CrossFadeAlpha(0, 1, true);
+        //print(shootDone);
+    }
+
     public void EndTutorial(string highwayLevel)
     {
-        SceneManager.LoadScene(highwayLevel);
+        //SceneManager.LoadScene(highwayLevel);
     }
 }
