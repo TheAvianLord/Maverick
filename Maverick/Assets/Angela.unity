@@ -3708,6 +3708,8 @@ MonoBehaviour:
   points: 0
   finishedLevel: 0
   explosion: {fileID: 1794334556}
+  soundSystem: {fileID: 382562795}
+  crash: {fileID: 8300000, guid: da18f5656c4a95344ae405a8775c9b8b, type: 3}
 --- !u!50 &2106815579
 Rigidbody2D:
   serializedVersion: 4

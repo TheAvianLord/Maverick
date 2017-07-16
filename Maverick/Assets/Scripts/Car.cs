@@ -20,8 +20,7 @@ public class Car : MonoBehaviour
     public AudioClip melee;
     public AudioClip gunHit;
     public AudioClip boom;
-    public AudioClip crash;
-    private AudioSource audioSource;
+
 
 
     public GameObject player;
@@ -38,7 +37,7 @@ public class Car : MonoBehaviour
         color_num = Random.Range(0, 3);
         spriteRenderer.sprite = colors[color_num];
         speed = speeds[Random.Range(0, 3)];
-        audioSource = GetComponent<AudioSource>();
+
 
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<Player>();
@@ -98,10 +97,7 @@ public class Car : MonoBehaviour
             AudioSource.PlayClipAtPoint(gunHit, transform.position);
         }
 
-        else if(other.tag == "Player")
-        {
-            AudioSource.PlayClipAtPoint(crash, transform.position);
-        }
+
     }
 
     IEnumerator wait()

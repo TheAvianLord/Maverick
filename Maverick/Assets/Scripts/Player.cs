@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
 
     public GameObject explosion;
 
+    public GameObject soundSystem;
+
+    public AudioClip crash;
+    private AudioSource audioSource;
 
     void Start()
     {
@@ -33,6 +37,7 @@ public class Player : MonoBehaviour
         health = maxHealth;
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         myAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         abletohit = true;
 }
 
@@ -80,10 +85,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Car" || other.tag == "EnemyBullet")
+        if (other.tag == "Car" || other.tag == "EnemyBullet" || other.tag == "Enemy")
         {
             health -= 10;
             abletohit = false;
+            AudioSource.PlayClipAtPoint(crash, transform.position);
             StartCoroutine(waitThreeSeconds());
         }
 
@@ -94,7 +100,7 @@ public class Player : MonoBehaviour
         speed = (float)3;
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-
+        Destroy(soundSystem);
         SceneManager.LoadScene("GameOver");
         //restart values
         EnemySpawner.chance = 200;
@@ -103,6 +109,7 @@ public class Player : MonoBehaviour
         Spawner.chance = 300;
         speed = (float)1.1;
         maxHealth = 100;
+
 
 
         Destroy(gameObject);
