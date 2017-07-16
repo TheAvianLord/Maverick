@@ -15,17 +15,27 @@ public class Player : MonoBehaviour
     public GameObject[] bullets;
     public int health;
 
+    public GameObject explosion;
+
 
     void Start()
     {
+
+        explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         myAnimator = GetComponent<Animator>();
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         abletohit = true;
 }
 
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            explosion.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+            StartCoroutine(wait());
+        }
+
         cars = GameObject.FindGameObjectsWithTag("Car");
         x_mov = Input.GetAxis("Horizontal");
         y_mov = Input.GetAxis("Vertical");
@@ -37,8 +47,6 @@ public class Player : MonoBehaviour
         if (abletohit)
         {
             myAnimator.SetBool("melee", Input.GetMouseButton(0));
-
-
         }
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(x_mov * speed, y_mov * speed);
@@ -48,10 +56,19 @@ public class Player : MonoBehaviour
     {
         if (other.tag == "Car" || other.tag == "EnemyBullet")
         {
-            //take damage
+            health -= 10;
             abletohit = false;
             StartCoroutine(waitThreeSeconds());
         }
+
+    }
+
+    IEnumerator wait()
+    {
+        speed = (float)3;
+        yield return new WaitForSeconds(0.6f);
+        explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        Destroy(gameObject);
 
     }
 
