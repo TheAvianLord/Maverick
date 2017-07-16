@@ -7,17 +7,20 @@ public class Player : MonoBehaviour
     public float speed;
     public float x_mov;
     public float y_mov;
+    public bool abletohit;
     public Animator myAnimator;
     public bool invincible;
     public GameObject[] cars;
     public GameObject[] enemies;
     public GameObject[] bullets;
 
+
     void Start()
     {
         myAnimator = GetComponent<Animator>();
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+        abletohit = true;
+}
 
     // Update is called once per frame
     void Update()
@@ -29,15 +32,23 @@ public class Player : MonoBehaviour
         myAnimator.SetBool("forward", Input.GetKey(KeyCode.W));
         myAnimator.SetBool("right", Input.GetKey(KeyCode.D));
         myAnimator.SetBool("left", Input.GetKey(KeyCode.A));
+
+        if (abletohit)
+        {
+            myAnimator.SetBool("melee", Input.GetMouseButton(0));
+        }
+            
+            //getmousebutton for guns
+
         GetComponent<Rigidbody2D>().velocity = new Vector2(x_mov * speed, y_mov * speed);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Car")
+        if (other.tag == "Car" )
         {
             //take damage
-            //disable melee and weapons
+            abletohit = false;
             StartCoroutine(waitThreeSeconds());
         }
     }
@@ -46,10 +57,12 @@ public class Player : MonoBehaviour
     {
         invincible = true;
         //flashing!
+        //stop taking damage
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         yield return new WaitForSeconds(0.5f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         yield return new WaitForSeconds(0.25f);
+        //disable collider
         gameObject.GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         yield return new WaitForSeconds(0.25f);
@@ -83,7 +96,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         invincible = false;
+        //enable collider
         gameObject.GetComponent<Collider2D>().enabled = true;
+        abletohit = true;
     }
 
 
