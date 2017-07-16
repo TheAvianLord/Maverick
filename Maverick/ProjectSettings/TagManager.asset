@@ -7,6 +7,7 @@ TagManager:
   - End
   - Front
   - Car
+  - Shadow
   layers:
   - Default
   - TransparentFX
