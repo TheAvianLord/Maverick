@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+
+    IEnumerator waitSecond()
+    {
+        yield return new WaitForSeconds(5.0f);
+    }
+
     public void PlayBtn(string tutorialLevel)
     {
+        StartCoroutine(waitSecond());
         SceneManager.LoadScene(tutorialLevel);
     }
 
