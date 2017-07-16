@@ -235,6 +235,9 @@ MonoBehaviour:
   melee: {fileID: 8300000, guid: 0f4c91d0bbecd074d89a76fa86e3d77a, type: 3}
   gunHit: {fileID: 8300000, guid: 8b31d1abc5867434aa0939d4967cce28, type: 3}
   boom: {fileID: 8300000, guid: 3e68ab255dbedbe46b60d82e4e32f63a, type: 3}
+  crash: {fileID: 8300000, guid: da18f5656c4a95344ae405a8775c9b8b, type: 3}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!212 &212459917841282822
 SpriteRenderer:
   m_ObjectHideFlags: 1

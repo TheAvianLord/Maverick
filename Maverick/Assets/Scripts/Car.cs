@@ -20,6 +20,7 @@ public class Car : MonoBehaviour
     public AudioClip melee;
     public AudioClip gunHit;
     public AudioClip boom;
+    public AudioClip crash;
     private AudioSource audioSource;
 
 
@@ -95,6 +96,11 @@ public class Car : MonoBehaviour
         {
             health -= 20;
             AudioSource.PlayClipAtPoint(gunHit, transform.position);
+        }
+
+        else if(other.tag == "Player")
+        {
+            AudioSource.PlayClipAtPoint(crash, transform.position);
         }
     }
 

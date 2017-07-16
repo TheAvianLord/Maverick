@@ -3704,6 +3704,7 @@ MonoBehaviour:
   bullets: []
   health: 200
   shadow: {fileID: 919329838}
+  rb: {fileID: 0}
   points: 0
   finishedLevel: 0
   explosion: {fileID: 1794334556}

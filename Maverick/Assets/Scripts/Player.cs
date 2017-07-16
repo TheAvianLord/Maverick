@@ -117,42 +117,23 @@ public class Player : MonoBehaviour
         //flashing!
         //stop taking damage
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
         //disable collider
         gameObject.GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         yield return new WaitForSeconds(0.15f);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.15f);
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+
         invincible = false;
         //enable collider
         gameObject.GetComponent<Collider2D>().enabled = true;
