@@ -224,9 +224,9 @@ MonoBehaviour:
   - {fileID: 21300010, guid: 04af0014185336b44b5c3188352a9cd0, type: 3}
   - {fileID: 21300016, guid: 04af0014185336b44b5c3188352a9cd0, type: 3}
   speeds:
-  - 1.5
-  - 1.7
-  - 1.9
+  - 1.1
+  - 0.8
+  - 0.5
   health: 100
   color_num: 0
   spriteRenderer: {fileID: 0}

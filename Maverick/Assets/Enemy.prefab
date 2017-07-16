@@ -250,7 +250,8 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   bullet: {fileID: 1136398850497030, guid: 3ce90d60f5612724495f1b97eee1e9c8, type: 2}
   alwaysOn: 1
-  fireRate: 0.8
+  hasCount: 0
+  bullets: 0
   nextFire: 0
 --- !u!114 &114609248645869366
 MonoBehaviour:
@@ -281,6 +282,10 @@ MonoBehaviour:
   health: 150
   explosion: {fileID: 1583339632141274}
   myAnimator: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  gun: {fileID: 0}
+  gunScript: {fileID: 0}
 --- !u!212 &212087070077286514
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -432,7 +437,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 225019a5f67caae4799af94577445529, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
