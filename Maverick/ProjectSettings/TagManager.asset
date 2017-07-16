@@ -8,6 +8,7 @@ TagManager:
   - Front
   - Car
   - Shadow
+  - Melee
   layers:
   - Default
   - TransparentFX
