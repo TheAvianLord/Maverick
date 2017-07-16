@@ -7,6 +7,7 @@ public class Ignore : MonoBehaviour
     public GameObject[] cars = GameObject.FindGameObjectsWithTag("Car");
     public GameObject endWall = GameObject.FindWithTag("End");
     public GameObject frontWall = GameObject.FindWithTag("Front");
+    public GameObject shadow = GameObject.FindWithTag("Shadow");
     // Use this for initialization
     void Start ()
     {
@@ -22,6 +23,9 @@ public class Ignore : MonoBehaviour
         {
             Physics2D.IgnoreCollision(endWall.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
             Physics2D.IgnoreCollision(frontWall.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(shadow.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
+            //ignore bullets
+            //ignore enemies
 
 
 

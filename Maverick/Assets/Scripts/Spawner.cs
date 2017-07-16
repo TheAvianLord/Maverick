@@ -19,6 +19,7 @@ public class Spawner : MonoBehaviour
     {
         cars = GameObject.FindGameObjectsWithTag("Car");
 
+        //create cars
         int num = Random.Range(0, chance+1);
         if ( num == chance)
         {
@@ -26,15 +27,16 @@ public class Spawner : MonoBehaviour
             createdObject.transform.position = new Vector3(transform.position.x, 3, 0);
         }
 
+        //delete double spawning cars
         for (int i = 0; i < cars.Length; i++)
         {
-            Debug.Log(cars[i].transform.position.x);
+
             if (cars[i].transform.position.x == -0.5 || cars[i].transform.position.x == -1.1 || cars[i].transform.position.x == 0.5 || cars[i].transform.position.x == 1.1)
             {
 
             }
 
-            else if (cars[i].transform.position.y >= 3)
+            else
             {
                 Destroy(cars[i]);
             }
