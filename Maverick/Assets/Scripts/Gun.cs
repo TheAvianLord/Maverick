@@ -16,6 +16,8 @@ public class Gun : MonoBehaviour
     public static float fireRate = 0.5f;
     public float nextFire = 0.0f;
 
+    public AudioClip gunShot;
+    AudioSource audioSource;
 
     // Use this for initialization
     void Start()
@@ -25,6 +27,8 @@ public class Gun : MonoBehaviour
         playerScript = player.GetComponent<Player>();
 
         bullets = maxBullets;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +59,7 @@ public class Gun : MonoBehaviour
 
         if (bullets > 0)
         {
+            AudioSource.PlayClipAtPoint(gunShot, new Vector3(5, 1, 2));
             GameObject createdObject = GameObject.Instantiate(bullet) as GameObject;
             createdObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         }

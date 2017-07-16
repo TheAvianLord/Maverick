@@ -91,17 +91,11 @@ public class Player : MonoBehaviour
         speed = (float)3;
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        Destroy(gameObject);
-        yield return new WaitForSeconds(1f);
-        EnemySpawner.chance = 200;
-        Spawner.chance = 300;
-        Player.levelPoints = 1;
-        Gun.maxBullets = 50;
-        Gun.fireRate = 0.5f;
-        speed = (float)1.1;
-        maxHealth = 500;
 
         SceneManager.LoadScene("GameOver");
+        Destroy(gameObject);
+        yield return new WaitForSeconds(1f);
+
 
     }
 

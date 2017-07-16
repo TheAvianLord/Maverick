@@ -17,6 +17,13 @@ public class Car : MonoBehaviour
 
     public Animator myAnimator;
 
+    public AudioClip melee;
+    public AudioClip gunHit;
+    public AudioClip boom;
+    private AudioSource audioSource;
+
+    private bool carDead = false;
+
     // Use this for initialization
     void Start()
     {
@@ -26,6 +33,7 @@ public class Car : MonoBehaviour
         color_num = Random.Range(0, 3);
         spriteRenderer.sprite = colors[color_num];
         speed = speeds[Random.Range(0, 3)];
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -48,6 +56,11 @@ public class Car : MonoBehaviour
 
         if (health <= 0)
         {
+            if (carDead == false)
+            {
+                carDead = true;
+                AudioSource.PlayClipAtPoint(boom, transform.position);
+            }
             gameObject.GetComponent<Collider2D>().enabled = false;
             spriteRenderer.sprite = demolisheds[color_num];
             explosion.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
@@ -61,11 +74,13 @@ public class Car : MonoBehaviour
         if (other.tag == "Melee" && Input.GetMouseButton(0))
         {
             health -= 50;
+            AudioSource.PlayClipAtPoint(melee, transform.position);
         }
 
         else if (other.tag == "Bullet")
         {
             health -= 20;
+            AudioSource.PlayClipAtPoint(gunHit, transform.position);
         }
     }
 

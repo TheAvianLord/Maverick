@@ -250,8 +250,10 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   bullet: {fileID: 1136398850497030, guid: 3ce90d60f5612724495f1b97eee1e9c8, type: 2}
   alwaysOn: 1
-  fireRate: 0.8
+  hasCount: 0
+  bullets: 0
   nextFire: 0
+  gunShot: {fileID: 8300000, guid: 62c31efb71a947143a8509cdbe754a55, type: 3}
 --- !u!114 &114609248645869366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,6 +283,13 @@ MonoBehaviour:
   health: 150
   explosion: {fileID: 1583339632141274}
   myAnimator: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  gun: {fileID: 0}
+  gunScript: {fileID: 0}
+  melee: {fileID: 8300000, guid: 0f4c91d0bbecd074d89a76fa86e3d77a, type: 3}
+  gunHit: {fileID: 8300000, guid: 8b31d1abc5867434aa0939d4967cce28, type: 3}
+  boom: {fileID: 8300000, guid: 3e68ab255dbedbe46b60d82e4e32f63a, type: 3}
 --- !u!212 &212087070077286514
 SpriteRenderer:
   m_ObjectHideFlags: 1

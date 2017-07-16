@@ -18,6 +18,12 @@ public class Enemy : MonoBehaviour
     public GameObject gun;
     public Gun gunScript;
 
+    public AudioClip melee;
+    public AudioClip gunHit;
+    public AudioClip boom;
+    private AudioSource audioSource;
+
+
     // Use this for initialization
     void Start ()
     {
@@ -32,6 +38,8 @@ public class Enemy : MonoBehaviour
 
         gun = GameObject.Find("Gun");
         gunScript = gun.GetComponent<Gun>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -40,7 +48,11 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            alive = false;
+            if (alive == true)
+            {
+                alive = false;
+                AudioSource.PlayClipAtPoint(boom, transform.position);
+            }
         }
 
 		if (start && transform.position.y < 0.5)
@@ -74,6 +86,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Melee" && Input.GetMouseButton(0))
         {
             health -= 50;
+            AudioSource.PlayClipAtPoint(melee, transform.position);
             if (gunScript.bullets + 20 > Gun.maxBullets)
             {
                 gunScript.bullets = Gun.maxBullets;
@@ -88,6 +101,7 @@ public class Enemy : MonoBehaviour
         else if (other.tag == "Bullet")
         {
             health -= 20;
+            AudioSource.PlayClipAtPoint(gunHit, transform.position);
         }
     }
 
