@@ -81,18 +81,21 @@ public class Car : MonoBehaviour
     {
         if (other.tag == "Melee" && Input.GetMouseButton(0) && playerScript.abletohit)
         {
+            StartCoroutine(flash());
             health -= 100;
             AudioSource.PlayClipAtPoint(melee, transform.position);
         }
 
         else if (other.tag == "Bullet")
         {
+            StartCoroutine(flash());
             health -= 20;
             AudioSource.PlayClipAtPoint(gunHit, transform.position);
         }
 
         else if (other.tag == "EnemyBullet")
         {
+            StartCoroutine(flash());
             health -= 20;
             AudioSource.PlayClipAtPoint(gunHit, transform.position);
         }
@@ -105,6 +108,23 @@ public class Car : MonoBehaviour
         speed = (float)2.5;
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+    }
+
+    IEnumerator flash()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        //disable collider
+        //gameObject.GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        yield return new WaitForSeconds(0.05f);
+        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        yield return new WaitForSeconds(0.05f);
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
+        //enable collider
+        //gameObject.GetComponent<Collider2D>().enabled = true;
     }
 
 }

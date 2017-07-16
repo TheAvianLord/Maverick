@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public AudioClip crash;
     private AudioSource audioSource;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -124,21 +125,21 @@ public class Player : MonoBehaviour
         //flashing!
         //stop taking damage
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         //disable collider
         gameObject.GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.05f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.05f);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
 
         invincible = false;
@@ -146,6 +147,5 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<Collider2D>().enabled = true;
         abletohit = true;
     }
-
 
 }
