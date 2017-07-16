@@ -74,7 +74,15 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Melee" && Input.GetMouseButton(0))
         {
             health -= 50;
-            gunScript.bullets += 20;
+            if (gunScript.bullets + 20 > Gun.maxBullets)
+            {
+                gunScript.bullets = Gun.maxBullets;
+            }
+
+            else
+            {
+                gunScript.bullets += 20;
+            }
         }
 
         else if (other.tag == "Bullet")

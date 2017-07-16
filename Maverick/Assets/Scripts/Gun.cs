@@ -10,9 +10,10 @@ public class Gun : MonoBehaviour
     public GameObject bullet;
     public bool alwaysOn = false;
     public bool hasCount = false;
-    public int bullets = 50;
+    public int bullets;
+    public static int maxBullets = 50;
 
-    public float fireRate = 0.5f;
+    public static float fireRate = 0.5f;
     public float nextFire = 0.0f;
 
 
@@ -22,6 +23,8 @@ public class Gun : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<Player>();
+
+        bullets = maxBullets;
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public float speed;
+    public static float speed = (float)1.1;
     public float x_mov;
     public float y_mov;
     public bool abletohit;
@@ -14,10 +14,13 @@ public class Player : MonoBehaviour
     public GameObject[] cars;
     public GameObject[] enemies;
     public GameObject[] bullets;
+    public static int maxHealth = 500;
     public int health;
     public GameObject shadow;
 
     public int points;
+    public static int levelPoints = 1;
+
     public bool finishedLevel = false;
 
     public GameObject explosion;
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        health = maxHealth;
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         myAnimator = GetComponent<Animator>();
         abletohit = true;
@@ -34,10 +37,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (points >= 2)
+        if (points >= levelPoints)
         {
             finishedLevel = true;
-            health = 100;
+            health = maxHealth;
             shadow.GetComponent<Collider2D>().enabled = false;
             transform.position = new Vector3(0, transform.position.y + (float)0.02, 0);
 
@@ -89,6 +92,16 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         Destroy(gameObject);
+        yield return new WaitForSeconds(1f);
+        EnemySpawner.chance = 200;
+        Spawner.chance = 300;
+        Player.levelPoints = 1;
+        Gun.maxBullets = 50;
+        Gun.fireRate = 0.5f;
+        speed = (float)1.1;
+        maxHealth = 500;
+
+        SceneManager.LoadScene("GameOver");
 
     }
 

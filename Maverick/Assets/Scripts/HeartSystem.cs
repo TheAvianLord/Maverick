@@ -5,103 +5,30 @@ using UnityEngine.UI;
 
 public class HeartSystem : MonoBehaviour
 {
-    public int maxHeartAmount = 6;
-    public int startHearts;
-    public int curHealth;
-    private int maxHealth;
-    private int healthPerHeart = 30;
 
-    public Image[] healthImages;
-    public Sprite[] healthSprites;
+    public Slider healthSlider;
+    public Text theText;
 
     public GameObject player;
     public Player playerScript;
-
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-        curHealth = startHearts * healthPerHeart;
-        maxHealth = maxHeartAmount * healthPerHeart;
-        CheckHealthAmount();
-
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<Player>();
-
-        curHealth = playerScript.health;
-        maxHeartAmount = curHealth / healthPerHeart;
     }
 
-    void CheckHealthAmount()
+    // Update is called once per frame
+    void Update()
     {
-        for (int i = 0; i < maxHeartAmount ; i++)
-        {
-            if (startHearts <= i)
-            {
-                healthImages[i].enabled = false;
-            }
-            else
-            {
-                healthImages[i].enabled = true;
-            }
-        }
-        UpdateHearts();
+        HandleBar();
     }
 
-    void UpdateHearts()
+    private void HandleBar()
     {
-        bool empty = false;
-        int i = 0;
-
-        foreach (Image image in healthImages)
-        {
-            if (empty)
-            {
-                image.sprite = healthSprites[0];
-            }
-            else
-            {
-                i++;
-                if (curHealth >= i * healthPerHeart)
-                {
-                    image.sprite = healthSprites[healthSprites.Length - 1];
-                }
-                else
-                {
-                    int currentHeartHealth = (int)(healthPerHeart - (healthPerHeart * i - curHealth));
-                    int healthPerImage = healthPerHeart / (healthSprites.Length - 1);
-                    int imageIndex = currentHeartHealth / healthPerImage;
-                    image.sprite = healthSprites[imageIndex];
-                    empty = true;
-                }
-            }
-        }
-    }
-
-    public void TakeDamage(int amount)
-    {
-        curHealth += amount;
-        curHealth = Mathf.Clamp(curHealth, 0, startHearts * healthPerHeart);
-        UpdateHearts();
-    }
-
-    public void AddHeartContainer()
-    {
-        startHearts++;
-        startHearts = Mathf.Clamp(startHearts, 0, maxHeartAmount);
-
-        curHealth = startHearts * healthPerHeart;
-        maxHealth = maxHeartAmount * healthPerHeart;
-
-        CheckHealthAmount();
-    }
-    
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        curHealth = playerScript.health;
-        UpdateHearts();
-
+        healthSlider.maxValue = Player.maxHealth;
+        healthSlider.value = playerScript.health;
+        theText.text = playerScript.health + "/" + Player.maxHealth;
     }
 }
+

@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemy;
-    public int chance;
+    public static int chance = 200;
     public GameObject[] enemies;
 
     public GameObject tutorialSystem;
@@ -18,6 +18,11 @@ public class EnemySpawner : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        if (chance < 50)
+        {
+            chance = 50;
+        }
+
         tutorialSystem = GameObject.Find("TutorialSystem");
         tutorialScript = tutorialSystem.GetComponent<TutorialInputs>();
 

@@ -7,6 +7,7 @@ public class Ammo : MonoBehaviour
 {
 
     public Slider ammoSlider;
+    public Text theText;
 
     public GameObject gun;
     public Gun gunScript;
@@ -25,6 +26,10 @@ public class Ammo : MonoBehaviour
 
     private void HandleBar()
     {
+        ammoSlider.maxValue = Gun.maxBullets;
         ammoSlider.value = gunScript.bullets;
+        theText.text = gunScript.bullets + "/" + Gun.maxBullets;
+
+
     }
 }

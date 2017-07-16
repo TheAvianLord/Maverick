@@ -16,4 +16,7 @@ EditorBuildSettings:
     guid: 69dd263590ad75644b29c6ff63198da8
   - enabled: 1
     path: Assets/GarageLevel.unity
+    guid: bf8b0f7edcdfd1647b67387f39d0315c
+  - enabled: 1
+    path: Assets/Angela.unity
     guid: 00000000000000000000000000000000

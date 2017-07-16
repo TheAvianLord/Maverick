@@ -2,16 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GarageUpgrade : MonoBehaviour
 {
     public int money;
     private Animator myAnimator;
+    public bool notupgraded;
+
 
 	// Use this for initialization
 	void Start ()
     {
         myAnimator = GetComponent<Animator>();
+
+        notupgraded = true;
+
+        //up the difficulty
+        EnemySpawner.chance -= 50;
+        Spawner.chance -= 50;
+        Player.levelPoints += 1;
+
 	}
 	
 	// Update is called once per frame
@@ -22,10 +33,12 @@ public class GarageUpgrade : MonoBehaviour
 
     public void PurchaseBikeUpgrade()
     {
-        if (money >= 200)
+        if (notupgraded)
         {
-            StaticVariables.BikeStats += 1;
-            money -= 200;
+            Player.speed += (float)0.1;
+            notupgraded = false;
+            //transition?
+            SceneManager.LoadScene("Angela");
         }
     }
 
@@ -41,10 +54,11 @@ public class GarageUpgrade : MonoBehaviour
 
     public void PurchaseArmorUpgrade()
     {
-        if (money >= 200)
+        if (notupgraded)
         {
-            StaticVariables.ArmorStats += 1;
-            money -= 200;
+            Player.maxHealth += 100;
+            notupgraded = false;
+            SceneManager.LoadScene("Angela");
         }
     }
 
@@ -60,10 +74,12 @@ public class GarageUpgrade : MonoBehaviour
 
     public void PurchaseWeaponUpgrade()
     {
-        if (money >= 200)
+        if (notupgraded)
         {
-            StaticVariables.WeaponStats += 1;
-            money -= 200;
+            Gun.fireRate += (float)0.2;
+            Gun.maxBullets += 20;
+            notupgraded = false;
+            SceneManager.LoadScene("Angela");
         }
     }
 
