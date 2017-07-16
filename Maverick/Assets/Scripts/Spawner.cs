@@ -8,41 +8,55 @@ public class Spawner : MonoBehaviour
     public int chance;
     public GameObject[] cars;
 
+    public GameObject tutorialSystem;
+    public TutorialInputs tutorialScript;
+
+    public GameObject player;
+    public Player playerScript;
+
     // Use this for initialization
     void Start ()
     {
+        tutorialSystem = GameObject.Find("TutorialSystem");
+        tutorialScript = tutorialSystem.GetComponent<TutorialInputs>();
 
-	}
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<Player>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        cars = GameObject.FindGameObjectsWithTag("Car");
-
-        //create cars
-        int num = Random.Range(0, chance+1);
-        if ( num == chance)
+        if (tutorialScript.tutorialOver == true && playerScript.finishedLevel == false)
         {
-            GameObject createdObject = GameObject.Instantiate(car) as GameObject;
-            createdObject.transform.position = new Vector3(transform.position.x, 6, 0);
-        }
+            cars = GameObject.FindGameObjectsWithTag("Car");
 
-        //delete double spawning cars
-        for (int i = 0; i < cars.Length; i++)
-        {
-
-            if (cars[i].transform.position.x == -0.5 || cars[i].transform.position.x == -1.1 || cars[i].transform.position.x == 0.5 || cars[i].transform.position.x == 1.1)
+            //create cars
+            int num = Random.Range(0, chance + 1);
+            if (num == chance)
             {
-
+                GameObject createdObject = GameObject.Instantiate(car) as GameObject;
+                createdObject.transform.position = new Vector3(transform.position.x, 6, 0);
             }
 
-            else
+            //delete double spawning cars
+            for (int i = 0; i < cars.Length; i++)
             {
-                //Destroy(cars[i]);
+
+                if (cars[i].transform.position.x == -0.5 || cars[i].transform.position.x == -1.1 || cars[i].transform.position.x == 0.5 || cars[i].transform.position.x == 1.1)
+                {
+
+                }
+
+                else
+                {
+                    //Destroy(cars[i]);
+                }
             }
+
         }
 
 
-	}
+    }
 
 }

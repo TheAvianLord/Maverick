@@ -8,35 +8,50 @@ public class EnemySpawner : MonoBehaviour
     public int chance;
     public GameObject[] enemies;
 
+    public GameObject tutorialSystem;
+    public TutorialInputs tutorialScript;
+
+    public GameObject player;
+    public Player playerScript;
+
+
     // Use this for initialization
     void Start ()
     {
-		
-	}
+        tutorialSystem = GameObject.Find("TutorialSystem");
+        tutorialScript = tutorialSystem.GetComponent<TutorialInputs>();
+
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<Player>();
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        if (enemies.Length <= 0)
+        if (tutorialScript.tutorialOver == true && playerScript.finishedLevel == false)
         {
-            int num = Random.Range(0, chance + 1);
-            if (num == chance)
-            {
-                GameObject createdObject = GameObject.Instantiate(enemy) as GameObject;
-                int lor = Random.Range(0, 2);
-                if (lor == 0)
-                {
-                    createdObject.transform.position = new Vector3((float)-0.8, -6, 0);
-                }
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-                else
+            if (enemies.Length <= 0)
+            {
+                int num = Random.Range(0, chance + 1);
+                if (num == chance)
                 {
-                    createdObject.transform.position = new Vector3((float)0.8, -6, 0);
+                    GameObject createdObject = GameObject.Instantiate(enemy) as GameObject;
+                    int lor = Random.Range(0, 2);
+                    if (lor == 0)
+                    {
+                        createdObject.transform.position = new Vector3((float)-0.8, -6, 0);
+                    }
+
+                    else
+                    {
+                        createdObject.transform.position = new Vector3((float)0.8, -6, 0);
+                    }
+
                 }
-                
             }
         }
+       
     }
 }

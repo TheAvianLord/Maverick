@@ -11,6 +11,13 @@ public class Enemy : MonoBehaviour
     public GameObject explosion;
     public Animator myAnimator;
 
+    public GameObject player;
+    public Player playerScript;
+
+
+    public GameObject gun;
+    public Gun gunScript;
+
     // Use this for initialization
     void Start ()
     {
@@ -19,6 +26,12 @@ public class Enemy : MonoBehaviour
 
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         myAnimator = GetComponent<Animator>();
+
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<Player>();
+
+        gun = GameObject.Find("Gun");
+        gunScript = gun.GetComponent<Gun>();
     }
 	
 	// Update is called once per frame
@@ -47,6 +60,7 @@ public class Enemy : MonoBehaviour
 
         else if (!alive)
         {
+
             gameObject.GetComponent<Collider2D>().enabled = false;
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
             explosion.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
@@ -60,6 +74,7 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Melee" && Input.GetMouseButton(0))
         {
             health -= 50;
+            gunScript.bullets += 20;
         }
 
         else if (other.tag == "Bullet")
@@ -73,7 +88,9 @@ public class Enemy : MonoBehaviour
         speed = (float)3;
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        playerScript.points += 1;
         Destroy(gameObject);
+
 
     }
 }

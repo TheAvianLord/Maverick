@@ -9,6 +9,8 @@ public class Gun : MonoBehaviour
     public Player playerScript;
     public GameObject bullet;
     public bool alwaysOn = false;
+    public bool hasCount = false;
+    public int bullets = 50;
 
     public float fireRate = 0.5f;
     public float nextFire = 0.0f;
@@ -43,7 +45,16 @@ public class Gun : MonoBehaviour
 
     void fire()
     {
-        GameObject createdObject = GameObject.Instantiate(bullet) as GameObject;
-        createdObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        if(hasCount)
+        {
+            bullets -= 1;
+        }
+
+        if (bullets > 0)
+        {
+            GameObject createdObject = GameObject.Instantiate(bullet) as GameObject;
+            createdObject.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        }
+       
     }
 }

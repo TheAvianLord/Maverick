@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class Player : MonoBehaviour
     public GameObject[] enemies;
     public GameObject[] bullets;
     public int health;
+    public GameObject shadow;
+
+    public int points;
+    public bool finishedLevel = false;
 
     public GameObject explosion;
 
@@ -29,6 +34,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (points >= 2)
+        {
+            finishedLevel = true;
+            health = 100;
+            shadow.GetComponent<Collider2D>().enabled = false;
+            transform.position = new Vector3(0, transform.position.y + (float)0.02, 0);
+
+            if (transform.position.y > 2.5)
+            {
+                SceneManager.LoadScene("GarageLevel");
+            }
+            
+
+        }
+
         if (health <= 0)
         {
             gameObject.GetComponent<Collider2D>().enabled = false;

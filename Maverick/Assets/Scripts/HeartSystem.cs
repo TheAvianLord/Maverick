@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class HeartSystem : MonoBehaviour
 {
-    private int maxHeartAmount = 6;
+    public int maxHeartAmount = 6;
     public int startHearts;
     public int curHealth;
     private int maxHealth;
-    private int healthPerHeart = 1;
+    private int healthPerHeart = 30;
 
     public Image[] healthImages;
     public Sprite[] healthSprites;
+
+    public GameObject player;
+    public Player playerScript;
+
 
 	// Use this for initialization
 	void Start ()
@@ -20,7 +24,12 @@ public class HeartSystem : MonoBehaviour
         curHealth = startHearts * healthPerHeart;
         maxHealth = maxHeartAmount * healthPerHeart;
         CheckHealthAmount();
-        AddHeartContainer();
+
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<Player>();
+
+        curHealth = playerScript.health;
+        maxHeartAmount = curHealth / healthPerHeart;
     }
 
     void CheckHealthAmount()
@@ -91,6 +100,8 @@ public class HeartSystem : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        curHealth = playerScript.health;
+        UpdateHearts();
+
+    }
 }

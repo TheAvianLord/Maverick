@@ -13,7 +13,7 @@ public class TutorialInputs : MonoBehaviour
     bool meleeDone = false;
     bool shootDone = false;
 
-    bool tutorialOver = false;
+    public bool tutorialOver = false;
 
     public Image movementImage;
     public Image meleeImage;
@@ -66,8 +66,7 @@ public class TutorialInputs : MonoBehaviour
         }
         else
         {
-            tutorialOver = false;
-            //print("Tutorial should end now");
+            tutorialOver = true;
         }
 	}
 
