@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
         if ( num == chance)
         {
             GameObject createdObject = GameObject.Instantiate(car) as GameObject;
-            createdObject.transform.position = new Vector3(transform.position.x, 3, 0);
+            createdObject.transform.position = new Vector3(transform.position.x, 6, 0);
         }
 
         //delete double spawning cars
@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
 
             else
             {
-                Destroy(cars[i]);
+                //Destroy(cars[i]);
             }
         }
 
