@@ -36,9 +36,9 @@ public class Player : MonoBehaviour
         if (abletohit)
         {
             myAnimator.SetBool("melee", Input.GetMouseButton(0));
+
+
         }
-            
-            //getmousebutton for guns
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(x_mov * speed, y_mov * speed);
     }
