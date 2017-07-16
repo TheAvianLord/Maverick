@@ -22,6 +22,10 @@ public class Car : MonoBehaviour
     public AudioClip boom;
     private AudioSource audioSource;
 
+
+    public GameObject player;
+    public Player playerScript;
+
     private bool carDead = false;
 
     // Use this for initialization
@@ -34,6 +38,10 @@ public class Car : MonoBehaviour
         spriteRenderer.sprite = colors[color_num];
         speed = speeds[Random.Range(0, 3)];
         audioSource = GetComponent<AudioSource>();
+
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<Player>();
+
     }
 
     // Update is called once per frame
@@ -71,9 +79,9 @@ public class Car : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Melee" && Input.GetMouseButton(0))
+        if (other.tag == "Melee" && Input.GetMouseButton(0) && playerScript.abletohit)
         {
-            health -= 50;
+            health -= 100;
             AudioSource.PlayClipAtPoint(melee, transform.position);
         }
 
