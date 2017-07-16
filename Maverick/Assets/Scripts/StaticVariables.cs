@@ -18,7 +18,7 @@ public class StaticVariables : MonoBehaviour
         }
     }
 
-    public static int BikeUpgrade
+    public static int BikeStats
     {
         get
         {
