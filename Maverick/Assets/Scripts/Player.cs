@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public GameObject[] cars;
     public GameObject[] enemies;
     public GameObject[] bullets;
-    public static int maxHealth = 300;
+    public static int maxHealth = 100;
     public int health;
     public GameObject shadow;
     public Rigidbody2D rb;

@@ -103,7 +103,6 @@ public class Car : MonoBehaviour
         speed = (float)2.5;
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-
     }
 
 }

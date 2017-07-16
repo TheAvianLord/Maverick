@@ -46,12 +46,12 @@ public class EnemySpawner : MonoBehaviour
                     int lor = Random.Range(0, 2);
                     if (lor == 0)
                     {
-                        createdObject.transform.position = new Vector3((float)-0.8, -6, 0);
+                        createdObject.transform.position = new Vector3((float)-0.8, -2, 0);
                     }
 
                     else
                     {
-                        createdObject.transform.position = new Vector3((float)0.8, -6, 0);
+                        createdObject.transform.position = new Vector3((float)0.8, -2, 0);
                     }
 
                 }

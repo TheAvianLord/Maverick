@@ -56,7 +56,7 @@ public class GarageUpgrade : MonoBehaviour
     {
         if (notupgraded)
         {
-            Player.maxHealth += 100;
+            Player.maxHealth += 20;
             notupgraded = false;
             SceneManager.LoadScene("Angela");
         }
