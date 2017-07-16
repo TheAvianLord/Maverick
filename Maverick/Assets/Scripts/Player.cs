@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject[] cars;
     public GameObject[] enemies;
     public GameObject[] bullets;
+    public int health;
 
 
     void Start()
@@ -36,21 +37,22 @@ public class Player : MonoBehaviour
         if (abletohit)
         {
             myAnimator.SetBool("melee", Input.GetMouseButton(0));
+
+
         }
-            
-            //getmousebutton for guns
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(x_mov * speed, y_mov * speed);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Car" )
+        if (other.tag == "Car" || other.tag == "EnemyBullet")
         {
             //take damage
             abletohit = false;
             StartCoroutine(waitThreeSeconds());
         }
+
     }
 
     IEnumerator waitThreeSeconds()

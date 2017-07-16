@@ -9,6 +9,9 @@ TagManager:
   - Car
   - Shadow
   - Melee
+  - Bullet
+  - Enemy
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
