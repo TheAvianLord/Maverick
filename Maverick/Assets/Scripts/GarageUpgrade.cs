@@ -76,7 +76,7 @@ public class GarageUpgrade : MonoBehaviour
     {
         if (notupgraded)
         {
-            Gun.fireRate += (float)0.2;
+            Gun.fireRate -= (float)0.01;
             Gun.maxBullets += 20;
             notupgraded = false;
             SceneManager.LoadScene("Angela");
