@@ -10,6 +10,8 @@ public class TutorialInputs : MonoBehaviour
     bool meleeDone = false;
     bool shootDone = false;
 
+    bool tutorialOver = false;
+
     public Image movementImage;
     public Image meleeImage;
     public Image shootImage;
@@ -58,7 +60,8 @@ public class TutorialInputs : MonoBehaviour
         }
         else
         {
-            print("Tutorial should end now");
+            tutorialOver = false;
+            //print("Tutorial should end now");
         }
 	}
 
@@ -102,6 +105,6 @@ public class TutorialInputs : MonoBehaviour
 
     public void EndTutorial(string highwayLevel)
     {
-        SceneManager.LoadScene(highwayLevel);
+        //SceneManager.LoadScene(highwayLevel);
     }
 }
