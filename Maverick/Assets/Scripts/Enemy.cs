@@ -1,60 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Car : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
+    public bool alive;
     public float speed;
-    public Sprite[] colors;
-    public Sprite[] damageds;
-    public Sprite[] demolisheds;
-    public float[] speeds;
-    public int health = 100;
-    public int color_num;
-    public SpriteRenderer spriteRenderer;
+    public bool start;
+    public int health = 150;
     public GameObject explosion;
-
     public Animator myAnimator;
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
+        alive = true;
+        start = true;
+
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-        spriteRenderer = GetComponent<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
-        color_num = Random.Range(0, 3);
-        spriteRenderer.sprite = colors[color_num];
-        speed = speeds[Random.Range(0, 3)];
     }
-
-    // Update is called once per frame
-    void Update()
+	
+	// Update is called once per frame
+	void Update ()
     {
-        //speed
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
-
-        //delete if off screen
-        if (transform.position.y < -2.5)
-        {
-            Destroy(gameObject);
-        }
-
-        //change sprite based on health
-        if (health <= 50 && health > 0)
-        {
-            spriteRenderer.sprite = damageds[color_num];
-        }
 
         if (health <= 0)
         {
+            alive = false;
+        }
+
+		if (start && transform.position.y < 0.5)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
+        }
+
+        if (transform.position.y >= 0.5)
+        {
+            start = false;
+        }
+
+        if (alive && !start)
+        {
+            transform.position = new Vector3((float)transform.position.x, Mathf.Abs(Mathf.Sin(Time.time)), 0);
+        }
+
+        else if (!alive)
+        {
             gameObject.GetComponent<Collider2D>().enabled = false;
-            spriteRenderer.sprite = demolisheds[color_num];
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
             explosion.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
             StartCoroutine(wait());
-
         }
-    }
+
+	}
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -71,10 +70,10 @@ public class Car : MonoBehaviour
 
     IEnumerator wait()
     {
-        speed = (float)2.5;
+        speed = (float)3;
         yield return new WaitForSeconds(0.6f);
         explosion.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        Destroy(gameObject);
 
     }
-
 }

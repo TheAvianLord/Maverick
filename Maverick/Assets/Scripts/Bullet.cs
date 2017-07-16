@@ -8,22 +8,36 @@ public class Bullet : MonoBehaviour
     public float offset = -90f;
 
     public Vector3 shootDirection;
-    
+    public GameObject player = GameObject.FindWithTag("Player");
+
+
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
+        player = GameObject.FindWithTag("Player");
         //rotate it, doesnt work yet
+        if (tag == "Bullet")
+        {
+            shootDirection = Input.mousePosition;
+            shootDirection.z = 0.0f;
+            shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
+            shootDirection = shootDirection - transform.position;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
 
-        shootDirection = Input.mousePosition;
-        shootDirection.z = 0.0f;
-        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
-        shootDirection = shootDirection - transform.position;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        else if (tag == "EnemyBullet")
+        {
+            shootDirection = player.transform.position;
+            shootDirection.z = 0.0f;
+            shootDirection = (player.transform.position - transform.position).normalized;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         //should start moving in direction, doesnt work yet
         GetComponent<Rigidbody2D>().velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
@@ -32,6 +46,18 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (tag == "EnemyBullet" && other.tag == "Enemy")
+        {
+
+        }
+
+        else if (other.tag == "Car" || other.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

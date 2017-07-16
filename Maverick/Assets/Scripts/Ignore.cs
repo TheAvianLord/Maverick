@@ -24,13 +24,7 @@ public class Ignore : MonoBehaviour
             Physics2D.IgnoreCollision(endWall.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
             Physics2D.IgnoreCollision(frontWall.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
             Physics2D.IgnoreCollision(shadow.GetComponent<Collider2D>(), cars[i].GetComponent<Collider2D>());
-            //ignore bullets
-            //ignore enemies
-
-
-
         }
 
-
-	}
+    }
 }

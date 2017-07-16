@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     public GameObject player;
     public Player playerScript;
     public GameObject bullet;
+    public bool alwaysOn = false;
 
     public float fireRate = 0.5f;
     public float nextFire = 0.0f;
@@ -30,7 +31,7 @@ public class Gun : MonoBehaviour
 
             myAnimator.SetBool("shooting", Input.GetMouseButton(1));
 
-            if (Input.GetMouseButton(1) && Time.time > nextFire)
+            if ((Input.GetMouseButton(1) || alwaysOn) && Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;
                 fire();
